@@ -1,17 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
     { to: "/", label: "Home" },
     { to: "/projects", label: "Projects" },
     { to: "/resume", label: "Resume" },
-    { to: "/contact", label: "Contact", highlight: true },
+    { to: "/contact", label: "Contact" },
   ];
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <>
@@ -28,15 +31,15 @@ const NavBar = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-4">
+          <div className="hidden md:flex gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 className={
-                  item.highlight
-                    ? "px-4 py-2 rounded-full bg-white text-black font-medium hover:bg-neutral-200 transition"
-                    : "px-4 py-2 text-sm text-neutral-400 hover:text-white transition"
+                  isActive(item.to)
+                    ? "text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-400 transition"
+                    : "text-sm font-medium text-neutral-500 hover:text-white transition"
                 }
               >
                 {item.label}
@@ -86,9 +89,9 @@ const NavBar = () => {
                     to={item.to}
                     onClick={() => setIsOpen(false)}
                     className={
-                      item.highlight
-                        ? "px-8 py-3 rounded-full bg-white text-black font-medium hover:bg-neutral-200 transition text-lg"
-                        : "text-2xl text-neutral-300 hover:text-white transition"
+                      isActive(item.to)
+                        ? "text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-400"
+                        : "text-2xl text-neutral-500 hover:text-white transition"
                     }
                   >
                     {item.label}

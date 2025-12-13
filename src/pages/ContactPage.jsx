@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, Mail, Github, Linkedin, MessageSquare } from 'lucide-react';
+import { ArrowLeft, Mail, Github, Linkedin, MessageSquare, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/ui/NavBar';
 
@@ -55,6 +55,12 @@ const ContactPage = () => {
                     <Linkedin size={20} /> Connect
                 </span>
                 <span className="text-sm text-neutral-500 group-hover:text-blue-400">LinkedIn</span>
+            </a>
+             <a href="https://instagram.com/ankit.kuniyal_" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 hover:bg-neutral-900 transition-all">
+                <span className="flex items-center gap-3 text-neutral-300 group-hover:text-white">
+                    <Instagram size={20} /> More of Me
+                </span>
+                <span className="text-sm text-neutral-500 group-hover:text-blue-400">Instagram</span>
             </a>
         </div>
       </motion.div>
