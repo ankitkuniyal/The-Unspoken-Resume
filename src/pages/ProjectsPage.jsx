@@ -1,11 +1,18 @@
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, lazy, Suspense } from 'react';
+
 import NavBar from '../components/ui/NavBar';
 import ProjectsHero from '../components/projects/ProjectsHero';
 
-// Individual Projects
-import VerveIO from '../components/projects/items/verve.io';
-import AetherLens from '../components/projects/items/AetherLens';
+// Lazy load heavy project components
+const VerveIO = lazy(() => import('../components/projects/items/verve.io'));
+const AetherLens = lazy(() => import('../components/projects/items/AetherLens'));
+
+// Minimal loading fallback for individual projects
+const ProjectLoader = () => (
+  <div className="h-screen snap-start flex items-center justify-center bg-background">
+    <div className="w-6 h-6 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+  </div>
+);
 
 const ProjectsPage = () => {
   return (
@@ -17,8 +24,12 @@ const ProjectsPage = () => {
 
       {/* Stacked Project Sections */}
       <div>
-          <VerveIO />
-          <AetherLens />
+          <Suspense fallback={<ProjectLoader />}>
+            <VerveIO />
+          </Suspense>
+          <Suspense fallback={<ProjectLoader />}>
+            <AetherLens />
+          </Suspense>
       </div>
 
     </div>
