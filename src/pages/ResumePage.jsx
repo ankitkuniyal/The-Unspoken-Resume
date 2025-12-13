@@ -121,7 +121,7 @@ const ResumePage = () => {
                              <div className="flex gap-4">
                                  <span className="text-neutral-600">03</span>
                                  <span>
-                                     <span className="text-blue-400">stack</span>: [<span className="text-orange-300">"React"</span>, <span className="text-orange-300">"Node"</span>, <span className="text-orange-300">"Python"</span>];
+                                     <span className="text-blue-400">stack</span>: [<span className="text-orange-300">"React"</span>, <span className="text-orange-300">"Node"</span>, <span className="text-orange-300">"Python"</span>,<span className="text-orange-300">"Java"</span>];
                                  </span>
                              </div>
                              <div className="flex gap-4">
