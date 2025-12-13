@@ -1,15 +1,12 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Download, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import NavBar from '../components/ui/NavBar';
 
 const ResumePage = () => {
   return (
     <div className="min-h-screen bg-background text-white p-6 md:p-20 flex flex-col items-center justify-center">
-       <div className="absolute top-6 left-6 md:top-20 md:left-20">
-        <Link to="/" className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors">
-            <ArrowLeft size={20} /> Back to Story
-        </Link>
-      </div>
+       <NavBar/>
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}

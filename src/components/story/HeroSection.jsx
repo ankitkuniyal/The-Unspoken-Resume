@@ -1,127 +1,96 @@
-import { motion } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
-import StorySection from '../ui/StorySection';
-import AnimatedHeading from '../ui/AnimatedHeading';
-
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import StorySection from "../ui/StorySection";
+import AnimatedHeading from "../ui/AnimatedHeading";
+import NavBar from "../ui/NavBar";
 
 const HeroSection = () => {
   return (
-    <StorySection 
-        id="hero" 
-        className="justify-center text-center"
-        // Performance: Force immediate animation, disable scroll observer
-        animate={{ opacity: 1, y: 0 }}
-        whileInView={null} 
-        viewport={null}
-        initial={{ opacity: 0, y: 20 }}
+    <StorySection
+      id="hero"
+      className="relative justify-center text-center overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
     >
-      {/* Navigation Buttons */}
-      <nav className="absolute top-0 left-0 w-full p-6 z-20 flex justify-center md:justify-end gap-4">
-        <Link to="/" className="px-4 py-2 rounded-full border border-transparent hover:border-neutral-700 text-sm md:text-base text-neutral-400 hover:text-white transition-all">
-          Story
-        </Link>
-        <Link to="/projects" className="px-4 py-2 rounded-full border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-800 text-sm md:text-base text-white transition-all backdrop-blur-sm">
-          Projects
-        </Link>
-        <Link to="/resume" className="px-4 py-2 rounded-full border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-800 text-sm md:text-base text-white transition-all backdrop-blur-sm">
-          Resume
-        </Link>
-        <Link to="/contact" className="px-4 py-2 rounded-full bg-white text-black font-semibold hover:bg-neutral-200 text-sm md:text-base transition-all">
-          Contact
-        </Link>
-      </nav>
+      {/* ─────────── NAV ─────────── */}
+      <NavBar />
 
-      {/* Completely New Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Dark Base */}
+      {/* ─────────── BACKGROUND ─────────── */}
+      <div className="absolute inset-0 -z-10">
+        {/* Base */}
         <div className="absolute inset-0 bg-black" />
-        
-        {/* Animated Gradient Orbs */}
+
+        {/* Soft ambient glow */}
         <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-emerald-500/30 to-transparent rounded-full blur-3xl"
+          animate={{ opacity: [0.25, 0.4, 0.25], scale: [1, 1.05, 1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-500/20 blur-[120px] rounded-full"
         />
+
         <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-tl from-purple-500/30 to-transparent rounded-full blur-3xl"
+          animate={{ opacity: [0.2, 0.35, 0.2], scale: [1, 1.08, 1] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-purple-500/20 blur-[120px] rounded-full"
         />
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.2, 0.3, 0.2],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-3xl"
-        />
-        
-        {/* Dot Grid Pattern */}
-        <div 
-          className="absolute inset-0 opacity-20"
+
+        {/* Subtle grain */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px)',
-            backgroundSize: '50px 50px',
-            maskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, black, transparent)',
-            WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, black, transparent)',
+            backgroundImage:
+              "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\"><filter id=\"n\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.8\" numOctaves=\"4\"/></filter><rect width=\"200\" height=\"200\" filter=\"url(%23n)\" opacity=\"0.4\"/></svg>')",
           }}
         />
-        
+
         {/* Vignette */}
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/50 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black/80" />
       </div>
 
-      <div className="flex flex-col items-center z-10 max-w-5xl mx-auto px-4">
-        <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-6 flex justify-center"
-        >
-            <span className="px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-mono tracking-widest uppercase">
-                Portfolio 2024
-            </span>
-        </motion.div>
+      {/* ─────────── EYEBROW TOP LEFT ─────────── */}
+      <motion.span
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="absolute top-6 left-6 md:left-20 z-10 px-3 py-1 rounded-full border border-neutral-800 text-neutral-400 text-xs font-mono tracking-widest uppercase"
+      >
+        The Unspoken Resume
+      </motion.span>
 
-        <AnimatedHeading 
-            text="I didn’t become an engineer overnight. I became one by breaking things." 
-            className="mb-10 text-4xl md:text-7xl font-extrabold tracking-tight leading-[1.1]"
-            viewport={null}
-            whileInView={null}
+      {/* ─────────── CONTENT ─────────── */}
+      <div className="relative z-10 max-w-4xl mx-auto px-6 flex flex-col items-center">
+        {/* Main Quote */}
+        <AnimatedHeading
+          text="Forged by mistakes. Refined by understanding."
+          className="mb-10 text-4xl md:text-6xl font-semibold tracking-tight leading-tighter"
+          viewport={null}
+          whileInView={null}
         />
-        
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm md:text-lg font-mono text-neutral-400"
+
+        {/* Supporting Text */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="max-w-2xl text-neutral-400 text-base md:text-lg leading-relaxed"
         >
-            <span className="hover:text-accent transition-colors cursor-default">Backend</span>
-            <span className="text-neutral-800">•</span>
-            <span className="hover:text-accent transition-colors cursor-default">AI Systems</span>
-            <span className="text-neutral-800">•</span>
-            <span className="hover:text-accent transition-colors cursor-default">Infrastructure</span>
-        </motion.div>
+          Everything here began as something unclear.  
+          What remained is what I learned by staying with it long enough.
+        </motion.p>
       </div>
 
-      <motion.div 
+      {/* ─────────── SCROLL CUE ─────────── */}
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3"
+        transition={{ delay: 1.2, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
       >
-        <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-600 font-medium">Start the Journey</span>
+        <span className="text-[10px] tracking-widest uppercase text-neutral-600">
+          Scroll
+        </span>
         <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="w-[1px] h-12 bg-gradient-to-b from-neutral-800 to-accent"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          className="w-px h-14 bg-gradient-to-b from-blue-700 to-blue-400"
         />
       </motion.div>
     </StorySection>

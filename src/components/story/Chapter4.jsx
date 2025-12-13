@@ -88,7 +88,7 @@ const Chapter4 = () => {
                         style={{ opacity: watermarkOpacity }}
                         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0"
                     >
-                         <span className="text-[12vw] font-black text-white leading-none tracking-tighter w-3/4">
+                         <span className="text-[20vw] md:text-[12vw] font-black text-white leading-none tracking-tighter text-center px-4">
                             LEARNING
                         </span>
                     </motion.div>

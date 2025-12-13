@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Mail, Github, Linkedin, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import NavBar from '../components/ui/NavBar';
 
 const ContactPage = () => {
   return (
@@ -11,11 +12,8 @@ const ContactPage = () => {
           <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-500/10 rounded-full blur-[100px]" />
        </div>
 
-       <div className="absolute top-6 left-6 md:top-20 md:left-20 z-10">
-        <Link to="/" className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors">
-            <ArrowLeft size={20} /> Back to Story
-        </Link>
-      </div>
+       <NavBar/>
+      
 
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
@@ -38,21 +36,21 @@ const ContactPage = () => {
         </p>
 
         <div className="flex flex-col gap-4 max-w-sm mx-auto w-full">
-            <a href="mailto:email@example.com" className="group flex items-center justify-between p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-accent hover:bg-neutral-900 transition-all">
+            <a href="mailto:ankitkuniyal520@gmail.com" className="group flex items-center justify-between p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-accent hover:bg-neutral-900 transition-all">
                 <span className="flex items-center gap-3 text-neutral-300 group-hover:text-white">
                     <Mail size={20} /> Say hello
                 </span>
-                <span className="text-sm text-neutral-500 group-hover:text-accent">email@example.com</span>
+                <span className="text-sm text-neutral-500 group-hover:text-accent">ankitkuniyal520@gmail.com</span>
             </a>
             
-             <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-neutral-600 hover:bg-neutral-900 transition-all">
+             <a href="https://github.com/ankitkuniyal" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-neutral-600 hover:bg-neutral-900 transition-all">
                 <span className="flex items-center gap-3 text-neutral-300 group-hover:text-white">
                     <Github size={20} /> Check the code
                 </span>
                 <span className="text-sm text-neutral-500 group-hover:text-white">GitHub</span>
             </a>
 
-             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 hover:bg-neutral-900 transition-all">
+             <a href="https://linkedin.com/in/ankitkuniyal" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between p-4 bg-neutral-900/50 border border-neutral-800 rounded-xl hover:border-blue-500/50 hover:bg-neutral-900 transition-all">
                 <span className="flex items-center gap-3 text-neutral-300 group-hover:text-white">
                     <Linkedin size={20} /> Connect
                 </span>

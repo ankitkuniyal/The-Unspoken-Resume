@@ -11,7 +11,7 @@ import Footer from '../components/ui/Footer';
 
 const StoryPage = () => {
   return (
-    <div className="bg-background min-h-screen text-white selection:bg-accent/30 selection:text-white pb-20">
+    <div className="bg-background min-h-screen text-white selection:bg-accent/30 selection:text-white pb-10">
       <main>
         <HeroSection />
         <Chapter1 />

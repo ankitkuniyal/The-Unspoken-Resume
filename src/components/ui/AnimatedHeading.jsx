@@ -4,7 +4,7 @@ import { cn } from '../../lib/utils';
 const AnimatedHeading = ({ text, className, viewport, whileInView }) => {
   const words = text.split(" ");
   return (
-    <h2 className={cn("text-4xl md:text-6xl font-bold tracking-tight pb-4 leading-normal", className)}>
+    <h2 className={cn("text-4xl md:text-6xl font-bold tracking-tight pb-4 leading-tight", className)}>
       {/* Render each word with animation */}
       {words.map((word, index) => (
         <motion.span

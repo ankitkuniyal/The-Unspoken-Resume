@@ -1,13 +1,12 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import NavBar from '../components/ui/NavBar';
 
 const ProjectsPage = () => {
   return (
     <div className="min-h-screen bg-background text-white p-6 md:p-20">
-      <Link to="/" className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors mb-12">
-        <ArrowLeft size={20} /> Back to Story
-      </Link>
+      <NavBar/>
       
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
