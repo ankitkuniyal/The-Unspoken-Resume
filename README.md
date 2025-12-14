@@ -1,7 +1,7 @@
-# Ankit Kuniyal | The Unwritten Resume
+# Ankit Kuniyal | The Unspoken Resume
 
 "Tell us something thats not in your resume", here is it !!!
-The Unwritten Resume, is the story of my journey, my projects, my achievements, my failures, my joys, my sorrows, my love, my hate, my everything.
+The Unspoken Resume, is the story of my journey, my projects, my achievements, my failures, my joys, my sorrows, my love, my hate, my everything.
 
 ![Portfolio Preview](public/preview.png)
 

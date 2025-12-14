@@ -27,7 +27,7 @@ const HeroSection = () => {
           className="mb-6"
           >
           <span className="inline-block py-1 px-3 rounded-full bg-accent/10 border border-accent/20 text-accent font-mono text-sm tracking-wide">
-            THE UNWRITTEN RESUME
+            THE UNSPOKEN RESUME
           </span>
         </motion.div>
 
