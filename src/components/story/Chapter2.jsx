@@ -75,7 +75,7 @@ const Chapter2 = () => {
                         <ScrollRevealText>
                             <div className="p-4 bg-accent/5 border border-accent/10 rounded-lg">
                                 <p className="text-accent/90 font-mono text-sm">
-                                    $Status: "I was slow. Not incapable — just thorough."
+                                    Status: "I was slow. Not incapable — just patient."
                                 </p>
                             </div>
                         </ScrollRevealText>
