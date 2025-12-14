@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-
+import ProjectsPage from './pages/ProjectsPage';
 // Lazy load pages for code splitting
 const StoryPage = lazy(() => import('./pages/StoryPage'));
-const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const ResumePage = lazy(() => import('./pages/ResumePage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 

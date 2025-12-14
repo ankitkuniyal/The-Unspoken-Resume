@@ -14,7 +14,7 @@ const AnimatedHeading = ({ text, className, viewport, whileInView }) => {
           animate={whileInView === null ? { opacity: 1, y: 0 } : undefined}
           viewport={viewport || { once: true }}
           transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-          className="inline-block mr-3 p-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400"
+          className="inline-block mr-3 py-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 "
         >
           {word}
         </motion.span>

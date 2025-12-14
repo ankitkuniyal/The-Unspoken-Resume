@@ -26,10 +26,12 @@ const ResumePage = () => {
                       <AnimatedHeading 
                           text="Expertise"
                           className="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-2"
+                          whileInView={null}
                       />
                       <AnimatedHeading 
                           text="& Experience"
                           className="text-6xl md:text-8xl font-serif italic text-neutral-500 mb-6 "
+                          whileInView={null}
                       />
                       <p className="text-lg text-neutral-400 max-w-lg leading-relaxed border-l-2 border-neutral-800 pl-6">
                           A comprehensive overview of my technical journey, architectural decisions, and the systems I've engineered. 
