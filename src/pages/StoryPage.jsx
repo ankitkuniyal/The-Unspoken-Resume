@@ -5,7 +5,6 @@ import SignatureTransition from '../components/ui/SignatureTransition';
 import { LazyChapter } from '../components/story/LazyChapter';
 import Conclusion from '../components/story/Conclusion';
 import Footer from '../components/ui/Footer';
-import StoryProgress from '../components/ui/StoryProgress';
 
 const StoryPage = () => {
   const [showIntro, setShowIntro] = useState(() => {
@@ -22,7 +21,7 @@ const StoryPage = () => {
           <SignatureTransition key="intro" onComplete={() => setShowIntro(false)} />
         ) : (
           <>
-            <StoryProgress />
+          
             <motion.main
               key="main"
               initial={{ opacity: 0 }}

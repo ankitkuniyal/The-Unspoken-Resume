@@ -82,7 +82,7 @@ const Chapter2 = () => {
              <ScrollRevealText>
               <div className="mt-8 inline-block rounded-full border border-white/10 bg-white/5 px-6 py-3 backdrop-blur-md">
                 <p className="font-mono text-sm text-neutral-400">
-                  STATUS: <span className="text-white">PATIENT</span>
+                  STATUS: <span className="text-white">I WAS SLOW - BUT CONSISTENT</span>
                 </p>
               </div>
             </ScrollRevealText>
