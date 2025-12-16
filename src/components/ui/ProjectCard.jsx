@@ -7,42 +7,78 @@ import { Link } from 'react-router-dom';
 const ProjectCard = ({ project, className }) => {
   return (
     <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.3 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       whileHover={{ y: -10 }}
       className={cn(
-        "min-w-[350px] md:min-w-[450px] h-[500px] bg-neutral-900/50 border border-neutral-800 rounded-xl p-8 flex flex-col justify-between relative group overflow-hidden transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.2)]",
-        className
+        'group relative flex h-[500px] min-w-[350px] flex-col justify-between overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900/50 p-8 transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.2)] md:min-w-[450px]',
+        className,
       )}
     >
       {/* Background Gradient on Hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
       <div>
-        <h3 className="text-2xl font-bold mb-2 group-hover:text-accent transition-colors">
+        <motion.h3
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-2 text-2xl font-bold transition-colors group-hover:text-accent"
+        >
           {project.name}
-        </h3>
-        <p className="text-muted-foreground text-sm mb-6 font-mono">
-            {project.tech.join(" • ")}
-        </p>
-        
+        </motion.h3>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-muted-foreground mb-6 font-mono text-sm"
+        >
+          {project.tech.join(' • ')}
+        </motion.p>
+
         <div className="space-y-4">
-            <div>
-                <span className="text-xs uppercase tracking-wider text-neutral-500">The Problem</span>
-                <p className="text-sm text-neutral-300 mt-1">{project.problem}</p>
-            </div>
-            <div>
-                <span className="text-xs uppercase tracking-wider text-red-400/80">My Mistake</span>
-                <p className="text-sm text-neutral-300 mt-1">{project.mistake}</p>
-            </div>
-            <div>
-                <span className="text-xs uppercase tracking-wider text-emerald-400/80">Lesson Learned</span>
-                <p className="text-sm text-neutral-300 mt-1">{project.lesson}</p>
-            </div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <span className="text-xs uppercase tracking-wider text-neutral-500">The Problem</span>
+            <p className="mt-1 text-sm text-neutral-300">{project.problem}</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <span className="text-xs uppercase tracking-wider text-red-400/80">My Mistake</span>
+            <p className="mt-1 text-sm text-neutral-300">{project.mistake}</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            <span className="text-xs uppercase tracking-wider text-emerald-400/80">
+              Lesson Learned
+            </span>
+            <p className="mt-1 text-sm text-neutral-300">{project.lesson}</p>
+          </motion.div>
         </div>
       </div>
 
-      <div className="flex gap-4 z-10 pt-6 mt-auto border-t border-neutral-800">
-        <Link to="/projects" className="flex items-center gap-2 text-sm text-white hover:text-accent transition-colors">
-            View Architecture <ExternalLink size={14} />
+      <div className="z-10 mt-auto flex gap-4 border-t border-neutral-800 pt-6">
+        <Link
+          to="/projects"
+          className="flex items-center gap-2 text-sm text-white transition-colors hover:text-accent"
+        >
+          View Architecture <ExternalLink size={14} />
         </Link>
       </div>
     </motion.div>

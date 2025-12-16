@@ -6,17 +6,22 @@ const StoryPage = lazy(() => import('./pages/StoryPage'));
 const ResumePage = lazy(() => import('./pages/ResumePage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 
+import SmoothScroll from './components/ui/SmoothScroll';
+import CustomCursor from './components/ui/CustomCursor';
+
 // Minimal loading fallback
 const PageLoader = () => (
-  <div className="min-h-screen bg-background flex items-center justify-center">
-    <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+  <div className="flex min-h-screen items-center justify-center bg-background">
+    <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-white" />
   </div>
 );
 
 function App() {
   return (
     <Router>
-      <div className="bg-background min-h-screen text-white selection:bg-accent/30 selection:text-white">
+      <CustomCursor />
+      <SmoothScroll>
+        <div className="min-h-screen bg-background text-white selection:bg-accent/30 selection:text-white">
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<StoryPage />} />
@@ -25,9 +30,10 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </Suspense>
-      </div>
+        </div>
+      </SmoothScroll>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

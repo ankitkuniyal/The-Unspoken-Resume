@@ -4,106 +4,113 @@ import ScrollRevealText from '../ui/ScrollRevealText';
 import { motion } from 'framer-motion';
 
 const Chapter2 = () => {
-    return (
-        <StorySection id="chapter-2" className="bg-neutral-900/40 relative">
-             {/* Background Decoration */}
-             <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+  return (
+    <StorySection id="chapter-2">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-2 md:items-center">
+        {/* Left Side: Visual / Quote */}
+        <div className="relative order-2 flex h-full min-h-[400px] w-full items-center justify-center md:order-1 md:h-[600px]">
+           <motion.div
+            initial={{ opacity: 0, scale: 0.9, x: -50 }}
+            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="group relative w-full max-w-md overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900/50 p-10 shadow-2xl backdrop-blur-xl"
+          >
+            {/* Glow effect */}
+            <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-50" />
 
-             <div className="grid md:grid-cols-2 gap-16 items-center">
-                 {/* Left Side: Visual / Quote */}
-                <div className="order-2 md:order-1 flex justify-center relative">
-                    
-                    {/* The "Deep Work" Card */}
-                    <motion.div 
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
-                        className="relative w-full max-w-md bg-neutral-950 border border-neutral-800 p-10 rounded-2xl shadow-2xl overflow-hidden group"
-                    >
-                        {/* Glow effect */}
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
-                        
-                        <div className="relative z-10">
-                            <div className="mb-6 flex gap-2">
-                                <div className="w-3 h-3 rounded-full bg-red-500/20" />
-                                <div className="w-3 h-3 rounded-full bg-yellow-500/20" />
-                                <div className="w-3 h-3 rounded-full bg-green-500/20" />
-                            </div>
+            <div className="relative z-10">
+              <div className="mb-8 flex gap-2 opacity-30">
+                <div className="h-3 w-3 rounded-full bg-neutral-600" />
+                <div className="h-3 w-3 rounded-full bg-neutral-600" />
+              </div>
 
-                            <p className="text-2xl md:text-3xl font-mono text-neutral-200 leading-relaxed tracking-tight">
-                                <TypewriterEffect text="Speed without understanding collapses under pressure." />
-                            </p>
+              <p className="font-mono text-2xl leading-relaxed tracking-tight text-neutral-200 md:text-3xl">
+                <span className="text-red-500 opacity-80">{'>'} </span>
+                <TypewriterEffect text="Speed without understanding collapses under pressure." />
+                <motion.span 
+                  animate={{ opacity: [1, 0] }} 
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                  className="inline-block h-6 w-3 bg-red-500 ml-2 align-middle"
+                />
+              </p>
 
-                            <div className="mt-8 flex items-center gap-3 opacity-50">
-                                <div className="h-[1px] flex-1 bg-neutral-800" />
-                                <span className="text-xs font-mono text-accent">LESSON_01.LOG</span>
-                            </div>
-                        </div>
-
-                        {/* Background Grid Pattern */}
-                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)] pointer-events-none" />
-                    </motion.div>
-                </div>
-
-                {/* Right Side: Narrative */}
-                <div className="order-1 md:order-2 px-4 md:px-0">
-                    <span className="text-accent font-mono text-sm mb-4 block flex items-center gap-2">
-                        <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                        Chapter 2
-                    </span>
-                    <AnimatedHeading text="Nothing worked the first time" className="text-4xl md:text-6xl mb-8" />
-                    
-                    <div className="space-y-8 border-l border-neutral-800 pl-8 relative">
-                         {/* Timeline dot */}
-                         <div className="absolute top-0 -left-[5px] w-2.5 h-2.5 bg-neutral-800 rounded-full" />
-                         
-                        <ScrollRevealText>
-                            <h3 className="text-xl text-white font-medium mb-2">The uncomfortable phase</h3>
-                            <p className="text-neutral-400">
-                                Things didn’t click quickly. DSA took time. Debugging took longer.
-                                Backend bugs didn’t announce themselves — they just failed silently.
-                            </p>
-                        </ScrollRevealText>
-                        
-                         <ScrollRevealText>
-                            <p className="text-lg text-neutral-300">
-                                I watched others move faster. <br/>
-                                <span className="text-white font-semibold">I moved deeper.</span>
-                            </p>
-                        </ScrollRevealText>
-
-                        <ScrollRevealText>
-                            <div className="p-4 bg-accent/5 border border-accent/10 rounded-lg">
-                                <p className="text-accent/90 font-mono text-sm">
-                                    Status: "I was slow. Not incapable — just patient."
-                                </p>
-                            </div>
-                        </ScrollRevealText>
-                    </div>
-                </div>
+              <div className="mt-12 flex items-center gap-4 text-neutral-500">
+                <div className="h-px flex-1 bg-neutral-800" />
+                <span className="font-mono text-xs tracking-widest uppercase">Error.log</span>
+              </div>
             </div>
-        </StorySection>
-    );
+
+            {/* Background Grid Pattern */}
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px] opacity-20" />
+          </motion.div>
+          
+           {/* Background Atmosphere */}
+           <div className="absolute left-1/2 top-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-900/10 blur-[120px]" />
+        </div>
+
+        {/* Right Side: Narrative */}
+        <div className="order-1 space-y-10 md:order-2">
+          <div>
+            <span className="mb-6 block font-mono text-sm tracking-[0.2em] text-neutral-500 uppercase">
+              Chapter 02
+            </span>
+            <AnimatedHeading
+              text="Nothing worked the first time"
+              className="text-3xl font-bold leading-[0.9] tracking-tighter text-white md:text-5xl lg:text-6xl"
+            />
+          </div>
+
+          <div className="relative space-y-8 border-l border-neutral-800 pl-8 text-lg font-light text-neutral-300 md:text-2xl">
+            <ScrollRevealText>
+             <p className="font-medium text-white">The uncomfortable phase.</p>
+            </ScrollRevealText>
+
+            <ScrollRevealText>
+              <p>
+                DSA took time. Debugging took longer. <br/>
+                <span className="text-red-400/80">Backend bugs didn’t announce themselves</span> — they just failed silently.
+              </p>
+            </ScrollRevealText>
+
+            <ScrollRevealText>
+              <p>
+                I watched others move faster. <br />
+                <span className="text-white font-semibold underline decoration-neutral-700 underline-offset-8">I moved deeper.</span>
+              </p>
+            </ScrollRevealText>
+            
+             <ScrollRevealText>
+              <div className="mt-8 inline-block rounded-full border border-white/10 bg-white/5 px-6 py-3 backdrop-blur-md">
+                <p className="font-mono text-sm text-neutral-400">
+                  STATUS: <span className="text-white">PATIENT</span>
+                </p>
+              </div>
+            </ScrollRevealText>
+          </div>
+        </div>
+      </div>
+    </StorySection>
+  );
 };
 
 const TypewriterEffect = ({ text }) => {
-    // Simple staggered reveal for the quote
-    const chars = text.split("");
-    return (
-        <span>
-            {chars.map((char, index) => (
-                <motion.span
-                    key={index}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.05, delay: index * 0.05 }}
-                >
-                    {char}
-                </motion.span>
-            ))}
-        </span>
-    )
-}
+  const chars = text.split('');
+  return (
+    <span>
+      {chars.map((char, index) => (
+        <motion.span
+          key={index}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.05, delay: index * 0.03 + 0.5 }}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </span>
+  );
+};
 
 export default Chapter2;
+

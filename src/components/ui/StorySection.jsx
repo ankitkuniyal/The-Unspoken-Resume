@@ -8,9 +8,12 @@ const StorySection = ({ children, className, id, viewport, initial, animate, whi
       initial={initial || { opacity: 0, y: 50 }}
       whileInView={whileInView === undefined ? { opacity: 1, y: 0 } : whileInView}
       animate={animate}
-      viewport={viewport || { once: true, margin: "-20%" }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className={cn("min-h-screen flex flex-col justify-center px-6 md:px-20 py-20 relative overflow-hidden", className)}
+      viewport={viewport || { once: true, margin: '-10%' }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      className={cn(
+        'relative flex min-h-screen w-full flex-col justify-center py-20 px-6 md:px-20',
+        className,
+      )}
     >
       {children}
     </motion.section>

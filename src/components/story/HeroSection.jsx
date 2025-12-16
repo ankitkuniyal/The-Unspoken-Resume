@@ -1,108 +1,111 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import NavBar from '../ui/NavBar';
+import { useRef } from 'react';
 
 const HeroSection = () => {
+  const ref = useRef(null);
   const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 100], [1, 0]);
-  const scale = useTransform(scrollY, [0, 300], [1, 0.95]);
+  
+  // Parallax effects
+  const yBackground = useTransform(scrollY, [0, 500], [0, 200]);
+  const yText = useTransform(scrollY, [0, 300], [0, 100]);
+  const opacityText = useTransform(scrollY, [0, 300], [1, 0]);
+  const scaleHero = useTransform(scrollY, [0, 300], [1, 0.9]);
 
   return (
-    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background">
-      {/* Background Ambience */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-500/10 rounded-full blur-[100px]" />
-       </div>
-        <NavBar/>
+    <section 
+      id="hero-section" 
+      ref={ref}
+      className="relative flex h-screen w-full flex-col overflow-hidden bg-neutral-950"
+    >
+      <NavBar />
       
-      {/* Main Content with Scroll Fade */}
+      {/* Background Layers - Deep Parallax */}
       <motion.div 
-        style={{ opacity, scale }}
-        className="relative z-10 container mx-auto px-6 text-center"
+        style={{ y: yBackground }}
+        className="absolute inset-0 z-0"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-6"
-          >
-          <span className="inline-block py-1 px-3 rounded-full bg-accent/10 border border-accent/20 text-accent font-mono text-sm tracking-wide">
-            THE UNSPOKEN RESUME
-          </span>
-        </motion.div>
+        {/* Central Spotlight */}
+        <div className="absolute left-1/2 top-1/2 h-[80vh] w-[80vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/5 blur-[120px]" />
+        
+        {/* Blue-Purple Atmospheric Gradients */}
+        <div className="absolute top-0 right-0 h-[60vh] w-[60vh] rounded-full bg-blue-900/40 blur-[150px] mix-blend-screen opacity-60" />
+        <div className="absolute bottom-0 left-0 h-[60vh] w-[60vh] rounded-full bg-purple-900/65 blur-[150px] mix-blend-screen opacity-50" />
+        <div className="absolute top-1/2 left-1/4 h-[50vh] w-[50vh] rounded-full bg-indigo-900/50 blur-[140px] mix-blend-screen opacity-40" />
+        
+        {/* Subtle Connective Layer */}
+        <div className="absolute top-1/2 left-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.05)_0%,transparent_70%)]" />
 
-        <motion.h1
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white mb-6"
-        >
-          Forged by errors. <br className="md:hidden" /> Refined by understanding.
-        </motion.h1>
+        {/* Global Gradient Overlay for Depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neutral-950/70 to-neutral-950" />
 
-        <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 1, delay: 0.4 }}
-           className="mb-8"
-        >
-            <h2 className="text-2xl md:text-4xl font-light text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-neutral-500">
-              
-            </h2>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto font-light leading-relaxed mb-10"
-        >
-          Everything here began as something unclear. <br className="hidden md:block" />
-          What remained is what I learned by staying with it long enough.
-        </motion.p>
-      
+        {/* Grain/Texture Overlay */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.10] brightness-100 contrast-150" />
       </motion.div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        style={{ opacity }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
-        onClick={() => document.getElementById('chapter-1')?.scrollIntoView({ behavior: 'smooth' })}
-      >
-        <span className="text-neutral-500 text-xs font-mono tracking-widest uppercase">Scroll</span>
-        
-        {/* Animated Gradient Line with Glow */}
+      {/* Main Content Area */}
+      <div className="relative z-10 flex h-full flex-grow flex-col items-center justify-center px-4 text-center">
         <motion.div
-          animate={{ 
-            y: [0, 8, 0],
-          }}
-          transition={{ 
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="relative w-[1px] h-12"
+           style={{ y: yText, opacity: opacityText, scale: scaleHero }}
+           className="flex max-w-[90rem] flex-col items-center gap-5"
         >
-          {/* Pulsing Glow Effect */}
+          {/* Tagline */}
           <motion.div
-            animate={{
-              opacity: [0.2, 0.5, 0.2],
-              scaleX: [1, 1.5, 1]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute inset-0 bg-accent/40 blur-md"
-          />
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          >
+            <span className="inline-block rounded-full border border-white/5 bg-white/5 px-6 py-2 font-sans text-sm font-small tracking-[0.2em] text-indigo-300/70 backdrop-blur-md transition-all duration-300 ease-out hover:border-white/10 hover:bg-white/10 hover:text-white">
+              THE UNSPOKEN RESUME
+            </span>
+          </motion.div>
+
+          {/* Headline - Clean & Modern with proper spacing */}
+          <h1 className="flex flex-col items-center justify-center space-y-2 font-sans font-bold leading-none tracking-tight text-white">
+            <div className="overflow-hidden py-2">
+              <motion.span
+                className="block text-4xl md:text-5xl lg:text-[8rem]"
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Forged by <span className="text-blue-500/100">Errors.</span>
+              </motion.span>
+            </div>
+            <div className="overflow-hidden py-1">
+              <motion.span
+                 className="block text-5xl md:text-7xl lg:text-[8rem] pb-3 bg-gradient-to-br from-white via-white to-neutral-500 bg-clip-text text-transparent"
+                 initial={{ y: "110%" }}
+                 animate={{ y: 0 }}
+                 transition={{ duration: 1, delay: 0.55, ease: [0.33, 1, 0.68, 1] }}
+              >
+                Refined by Understanding.
+              </motion.span>
+            </div>
+          </h1>
+
           
-          {/* Gradient Line */}
-          <div className="absolute inset-0 bg-gradient-to-b from-neutral-500 to-transparent" />
         </motion.div>
+      </div>
+
+      {/* Footer Scroll Indication */}
+      <motion.div
+         className="absolute bottom-10 left-0 right-0 z-20 flex mt-4 justify-center"
+         style={{ opacity: opacityText }}
+      >
+        <div 
+          onClick={() => document.getElementById('chapter-1')?.scrollIntoView({ behavior: 'smooth' })}
+          className="group flex cursor-pointer flex-col items-center gap-3 transition-opacity hover:opacity-80"
+        >
+          <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">Scroll to reveal</span>
+          <div className="h-10 w-[1px] overflow-hidden bg-neutral-800">
+            <motion.div 
+               animate={{ y: ['-100%', '100%'] }}
+               transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
+               className="h-full w-full bg-accent"
+            />
+          </div>
+        </div>
       </motion.div>
     </section>
   );

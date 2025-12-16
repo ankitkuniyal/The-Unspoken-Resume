@@ -2,162 +2,140 @@ import StorySection from '../ui/StorySection';
 import AnimatedHeading from '../ui/AnimatedHeading';
 import ScrollRevealText from '../ui/ScrollRevealText';
 import { motion } from 'framer-motion';
-import { Sparkles, Bot, Cpu, Zap } from 'lucide-react';
+import { Bot, Sparkles } from 'lucide-react';
+import { useMemo } from 'react';
 
-const MultiModelVisual = () => {
-    const models = [
-        { name: "GPT-4", x: -30, y: -20, color: "text-green-400", delay: 0 },
-        { name: "CLAUDE", x: 30, y: -30, color: "text-orange-400", delay: 1 },
-        { name: "GEMINI", x: -20, y: 30, color: "text-blue-400", delay: 2 },
-        { name: "LLAMA", x: 40, y: 20, color: "text-purple-400", delay: 3 },
-    ];
+const NeuralHub = () => {
+  const models = [
+    { name: 'GPT-4o', angle: 0, color: 'bg-green-500', text: 'text-green-400' },
+    { name: 'Claude 3.5', angle: 90, color: 'bg-orange-500', text: 'text-orange-400' },
+    { name: 'Gemini 1.5', angle: 180, color: 'bg-blue-500', text: 'text-blue-400' },
+    { name: 'Llama 3', angle: 270, color: 'bg-purple-500', text: 'text-purple-400' },
+  ];
 
-    return (
-        <div className="relative w-full h-[350px] flex items-center justify-center bg-neutral-900/20 rounded-2xl overflow-hidden border border-neutral-800">
-            {/* Background Grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]" />
+  return (
+    <div className="relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-3xl border border-white/5 bg-neutral-900/40 backdrop-blur-sm md:h-[600px]">
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] opacity-20" />
 
-            {/* Central "User/Synthesis" Core */}
-            <div className="relative z-10 flex flex-col items-center">
-                <motion.div 
-                    initial={{ scale: 0.8 }}
-                    animate={{ scale: [0.9, 1, 0.9] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-20 h-20 bg-neutral-950 border border-neutral-700 rounded-xl flex items-center justify-center shadow-2xl relative z-20 group"
-                >
-                    <div className="absolute inset-0 bg-accent/10 blur-xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity" />
-                    <Cpu size={32} className="text-white relative z-10" />
-                </motion.div>
-                <div className="mt-4 text-[10px] font-mono text-neutral-500 tracking-widest uppercase">My Judgement</div>
-            </div>
-
-            {/* Orbiting AI Models */}
-            {models.map((model, i) => (
-                <motion.div
-                    key={i}
-                    className={`absolute flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900/80 border border-neutral-800 backdrop-blur-md shadow-lg z-10`}
-                    initial={{ opacity: 0, x: 0, y: 0 }}
-                    animate={{ 
-                        opacity: 1, 
-                        x: [0, model.x * 2, 0],   // Gentle float
-                        y: [0, model.y * 2, 0],
-                    }}
-                    style={{
-                        top: `50%`,
-                        left: `50%`,
-                        marginTop: model.y * 3, // Initial offset positions
-                        marginLeft: model.x * 5,
-                    }}
-                    transition={{ 
-                        duration: 5, 
-                        repeat: Infinity, 
-                        repeatType: "reverse", 
-                        delay: model.delay 
-                    }}
-                >
-                    <Bot size={14} className={model.color} />
-                    <span className={`text-xs font-bold font-mono ${model.color} opacity-90`}>{model.name}</span>
-                    
-                    {/* Beam to Center */}
-                    <motion.div 
-                        className={`absolute top-1/2 ${model.x < 0 ? 'right-0 -mr-[100px]' : 'left-0 -ml-[100px]'} h-[1px] w-[100px] bg-gradient-to-r from-transparent via-${model.color.split('-')[1]}-500/50 to-transparent -z-10`}
-                        style={{ 
-                            transformOrigin: model.x < 0 ? 'right' : 'left',
-                            rotate: model.x < 0 ? '15deg' : '-15deg' // Rough angle towards center
-                         }}
-                         animate={{ opacity: [0, 0.5, 0] }}
-                         transition={{ duration: 2, repeat: Infinity, delay: model.delay }}
-                    />
-                </motion.div>
-            ))}
-
-            {/* Particle Stream Effects (Data Flow) */}
-            <div className="absolute inset-0 pointer-events-none">
-                 {[...Array(6)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        className="absolute w-1 h-1 bg-white rounded-full"
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ 
-                            opacity: [0, 1, 0],
-                            x: [ (Math.random()-0.5)*300, 0 ], // Move exactly to center
-                            y: [ (Math.random()-0.5)*300, 0 ],
-                        }}
-                        style={{ top: '50%', left: '50%' }}
-                        transition={{ duration: 1.5, repeat: Infinity, delay: Math.random() * 2 }}
-                    />
-                 ))}
-            </div>
-
-            <div className="absolute bottom-4 right-6 text-[10px] text-neutral-700 font-mono flex items-center gap-2">
-                <Sparkles size={10} />
-                <span>MODEL_AGGREGATION_ACTIVE</span>
-            </div>
+      {/* Center Core: Human Judgement */}
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="relative z-20 flex h-32 w-32 items-center justify-center rounded-full border border-white/20 bg-neutral-950 shadow-[0_0_50px_rgba(255,255,255,0.1)]"
+      >
+        <div className="absolute inset-0 animate-pulse rounded-full bg-white/5 blur-xl" />
+        <div className="text-center">
+            <span className="block text-2xl">🧠</span>
+            <span className="mt-2 block font-mono text-[10px] tracking-widest text-neutral-400 uppercase">Judgement</span>
         </div>
-    );
+      </motion.div>
+
+      {/* Orbiting AI Nodes */}
+      <div className="absolute inset-0 flex items-center justify-center">
+         {models.map((model, i) => (
+            <OrbitingNode key={i} model={model} index={i} />
+         ))}
+      </div>
+      
+       {/* Ambient Glow */}
+       <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-accent/5 blur-[100px]" />
+    </div>
+  );
 };
 
-const Chapter6 = () => {
+const OrbitingNode = ({ model, index }) => {
     return (
-        <StorySection id="chapter-6">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-                
-                {/* Right: Visual */}
-                 <div className="order-2 md:order-2 bg-neutral-950/50 rounded-2xl border border-neutral-900 p-2">
-                    <MultiModelVisual />
-                </div>
+        <motion.div
+           className="absolute h-[280px] w-[280px]"
+           initial={{ rotate: model.angle, opacity: 0 }}
+           whileInView={{ rotate: model.angle + 360, opacity: 1 }}
+           transition={{ 
+               rotate: { duration: 20 + index * 5, repeat: Infinity, ease: "linear" },
+               opacity: { duration: 1, delay: index * 0.2 }
+           }}
+        >
+           <motion.div 
+             className="absolute -top-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+             style={{ rotate: -(model.angle) }} // Counter-rotate to keep text upright? No, simpler to just rotate the container.
+           >
+              <div className={`h-3 w-3 rounded-full ${model.color} shadow-[0_0_20px_currentColor]`} />
+              <div className={`rounded-full border border-white/10 bg-neutral-950/80 px-3 py-1 backdrop-blur-md`}>
+                  <span className={`font-mono text-xs font-bold ${model.text}`}>{model.name}</span>
+              </div>
+           </motion.div>
+           
+           {/* Beam to Center (Visual only, simple line) */}
+            <div className="absolute left-1/2 top-0 h-1/2 w-[1px] -translate-x-1/2 bg-gradient-to-b from-white/20 to-transparent" />
+        </motion.div>
+    )
+}
 
-                {/* Left: Narrative */}
-                <div className="order-1 md:order-1 space-y-10">
-                    <div>
-                        <span className="text-accent font-mono text-sm mb-4 block">Chapter 6</span>
-                        <AnimatedHeading text="AI as a Learning Accelerator" className="text-3xl md:text-5xl" />
-                    </div>
+const Chapter6 = () => {
+  return (
+    <StorySection id="chapter-6">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-2 md:items-center">
+        {/* Visual Left (Alternating) */}
+        <div className="order-2 w-full md:order-1">
+             <NeuralHub />
+        </div>
 
-                    <div className="space-y-6">
-                        <ScrollRevealText>
-                            <p className="text-xl text-white font-medium">
-                                I don’t use AI to bypass the struggle. <br/>
-                                <span className="text-accent">I use it to deepen the layer.</span>
-                            </p>
-                        </ScrollRevealText>
+        {/* Narrative Right */}
+        <div className="order-1 space-y-10 md:order-2">
+          <div>
+            <span className="mb-6 block font-mono text-sm tracking-[0.2em] text-accent uppercase opacity-70">
+              Chapter 06
+            </span>
+            <AnimatedHeading 
+              text="AI as a Learning Accelerator" 
+              className="text-3xl font-bold leading-[0.9] tracking-tighter text-white md:text-5xl lg:text-7xl" 
+            />
+          </div>
 
-                        <ScrollRevealText>
-                            <p className="text-neutral-300">
-                                When I encounter a new problem, I don’t ask for the solution. 
-                                I ask for the <span className="text-white">mental model</span>. 
-                                I use models to map the terrain, challenge my assumptions, and expose what I don’t know.
-                            </p>
-                        </ScrollRevealText>
+          <div className="space-y-8 text-lg font-light leading-relaxed text-neutral-300 md:text-2xl">
+            <ScrollRevealText>
+               <p>
+                I don’t use AI to bypass the struggle. <br />
+                <span className="text-white font-medium underline decoration-neutral-700 underline-offset-8">I use it to deepen the layer.</span>
+              </p>
+            </ScrollRevealText>
 
-                         <ScrollRevealText>
-                            <div className="pl-4 border-l-2 border-neutral-800 space-y-2 my-4">
-                                <p className="text-neutral-400">The loop isn't copy-paste. It's:</p>
-                                <ul className="list-disc list-inside text-neutral-300 space-y-1 font-mono text-sm">
-                                    <li>Question the constraint</li>
-                                    <li>Validate the logic</li>
-                                    <li>Refactor the suggestion</li>
-                                </ul>
-                            </div>
-                        </ScrollRevealText>
+            <ScrollRevealText>
+              <p>
+                When I encounter a new problem, I don’t ask for the solution. I ask for the {' '}
+                <span className="text-accent italic">mental model</span>.
+              </p>
+            </ScrollRevealText>
 
-                        <ScrollRevealText>
-                            <p>
-                                The difference between a junior and a senior isn't speed. It's judgment. 
-                                AI suggests. I decide.
-                            </p>
-                        </ScrollRevealText>
-                        
-                         <ScrollRevealText>
-                            <p className="text-white font-medium italic pt-2">
-                                AI doesn’t replace my thinking — it sharpens it.
-                            </p>
-                        </ScrollRevealText>
-                    </div>
-                </div>
-            </div>
-        </StorySection>
-    );
+            <ScrollRevealText>
+              <ul className="space-y-4 border-l-2 border-white/10 pl-6 text-base md:text-xl">
+                 <li className="flex items-center gap-3">
+                    <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                    <span>Question the constraint</span>
+                 </li>
+                 <li className="flex items-center gap-3">
+                    <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                    <span>Validate the logic</span>
+                 </li>
+                 <li className="flex items-center gap-3">
+                    <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                    <span>Refactor the suggestion</span>
+                 </li>
+              </ul>
+            </ScrollRevealText>
+
+            <ScrollRevealText>
+              <p>
+                The difference between a junior and a senior isn't speed. It's judgment. AI
+                suggests. <span className="text-white font-semibold">I decide.</span>
+              </p>
+            </ScrollRevealText>
+          </div>
+        </div>
+      </div>
+    </StorySection>
+  );
 };
 
 export default Chapter6;

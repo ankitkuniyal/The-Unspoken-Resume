@@ -7,6 +7,6 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-white antialiased font-sans overflow-x-hidden;
+    @apply overflow-x-hidden bg-background font-sans text-white antialiased;
   }
 }

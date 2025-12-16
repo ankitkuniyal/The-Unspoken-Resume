@@ -11,36 +11,43 @@ import Chapter6 from '../components/story/Chapter6';
 import Chapter7 from '../components/story/Chapter7';
 import Conclusion from '../components/story/Conclusion';
 import Footer from '../components/ui/Footer';
+import StoryProgress from '../components/ui/StoryProgress';
 
 const StoryPage = () => {
   const [showIntro, setShowIntro] = useState(() => {
-      return !sessionStorage.getItem('introShown');
+    return !sessionStorage.getItem('introShown');
   });
 
   return (
-    <div className="bg-background min-h-screen text-white selection:bg-accent/30 selection:text-white pb-10">
+    <div className="relative min-h-screen w-full bg-[#020202] text-white selection:bg-accent/30 selection:text-white">
+      {/* Global Grain/Texture Overlay */}
+      <div className="fixed inset-0 z-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 brightness-100 contrast-150 pointer-events-none" />
+      
       <AnimatePresence mode="wait">
         {showIntro ? (
-            <SignatureTransition key="intro" onComplete={() => setShowIntro(false)} />
+          <SignatureTransition key="intro" onComplete={() => setShowIntro(false)} />
         ) : (
-            <motion.main 
-                key="main"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+          <>
+            <StoryProgress />
+            <motion.main
+              key="main"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
             >
-                <HeroSection />
-                <Chapter1 />
-                <Chapter2 />
-                <Chapter3 />
-                <Chapter4 />
-                <Chapter5 />
-                <Chapter6 />
-                <Chapter7 />
-                <Conclusion />
+              <HeroSection />
+              <Chapter1 />
+              <Chapter2 />
+              <Chapter3 />
+              <Chapter4 />
+              <Chapter5 />
+              <Chapter6 />
+              <Chapter7 />
+              <Conclusion />
+              <Footer />
             </motion.main>
+          </>
         )}
-      {!showIntro && <Footer />}
       </AnimatePresence>
     </div>
   );
