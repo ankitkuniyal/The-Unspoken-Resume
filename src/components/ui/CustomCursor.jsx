@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo, useCallback } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
-export default function CustomCursor() {
+const CustomCursor = memo(() => {
   const [isHovering, setIsHovering] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -58,4 +58,6 @@ export default function CustomCursor() {
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     />
   );
-}
+});
+
+export default CustomCursor;

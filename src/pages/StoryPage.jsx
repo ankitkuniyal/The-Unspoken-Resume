@@ -2,13 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import HeroSection from '../components/story/HeroSection';
 import SignatureTransition from '../components/ui/SignatureTransition';
-import Chapter1 from '../components/story/Chapter1';
-import Chapter2 from '../components/story/Chapter2';
-import Chapter3 from '../components/story/Chapter3';
-import Chapter4 from '../components/story/Chapter4';
-import Chapter5 from '../components/story/Chapter5';
-import Chapter6 from '../components/story/Chapter6';
-import Chapter7 from '../components/story/Chapter7';
+import { LazyChapter } from '../components/story/LazyChapter';
 import Conclusion from '../components/story/Conclusion';
 import Footer from '../components/ui/Footer';
 import StoryProgress from '../components/ui/StoryProgress';
@@ -21,7 +15,7 @@ const StoryPage = () => {
   return (
     <div className="relative min-h-screen w-full bg-[#020202] text-white selection:bg-accent/30 selection:text-white">
       {/* Global Grain/Texture Overlay */}
-      <div className="fixed inset-0 z-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 brightness-100 contrast-150 pointer-events-none" />
+      <div className="fixed inset-0 z-0 bg-[url('/noise.svg')] opacity-15 brightness-100 contrast-150 pointer-events-none" />
       
       <AnimatePresence mode="wait">
         {showIntro ? (
@@ -36,13 +30,13 @@ const StoryPage = () => {
               transition={{ duration: 1 }}
             >
               <HeroSection />
-              <Chapter1 />
-              <Chapter2 />
-              <Chapter3 />
-              <Chapter4 />
-              <Chapter5 />
-              <Chapter6 />
-              <Chapter7 />
+              <LazyChapter number={1} />
+              <LazyChapter number={2} />
+              <LazyChapter number={3} />
+              <LazyChapter number={4} />
+              <LazyChapter number={5} />
+              <LazyChapter number={6} />
+              <LazyChapter number={7} />
               <Conclusion />
               <Footer />
             </motion.main>

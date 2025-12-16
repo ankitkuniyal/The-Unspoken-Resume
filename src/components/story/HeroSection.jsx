@@ -7,10 +7,10 @@ const HeroSection = () => {
   const { scrollY } = useScroll();
   
   // Parallax effects
-  const yBackground = useTransform(scrollY, [0, 500], [0, 200]);
-  const yText = useTransform(scrollY, [0, 300], [0, 100]);
-  const opacityText = useTransform(scrollY, [0, 300], [1, 0]);
-  const scaleHero = useTransform(scrollY, [0, 300], [1, 0.9]);
+  const yBackground = useTransform(scrollY, [0, 1000], [0, 200]);
+  const yText = useTransform(scrollY, [0, 600], [0, 100]);
+  const opacityText = useTransform(scrollY, [0, 600], [1, 0]);
+  const scaleHero = useTransform(scrollY, [0, 600], [1, 0.9]);
 
   return (
     <section 
@@ -26,12 +26,12 @@ const HeroSection = () => {
         className="absolute inset-0 z-0"
       >
         {/* Central Spotlight */}
-        <div className="absolute left-1/2 top-1/2 h-[80vh] w-[80vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/5 blur-[120px]" />
+        <div className="absolute left-1/2 top-1/2 h-[80vh] w-[80vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/5 blur-[80px]" />
         
         {/* Blue-Purple Atmospheric Gradients */}
-        <div className="absolute top-0 right-0 h-[60vh] w-[60vh] rounded-full bg-blue-900/40 blur-[150px] mix-blend-screen opacity-60" />
-        <div className="absolute bottom-0 left-0 h-[60vh] w-[60vh] rounded-full bg-purple-900/65 blur-[150px] mix-blend-screen opacity-50" />
-        <div className="absolute top-1/2 left-1/4 h-[50vh] w-[50vh] rounded-full bg-indigo-900/50 blur-[140px] mix-blend-screen opacity-40" />
+        <div className="absolute top-0 right-0 h-[60vh] w-[60vh] rounded-full bg-blue-900/40 blur-[80px] mix-blend-screen opacity-60" />
+        <div className="absolute bottom-0 left-0 h-[60vh] w-[60vh] rounded-full bg-purple-900/65 blur-[80px] mix-blend-screen opacity-50" />
+        <div className="absolute top-1/2 left-1/4 h-[50vh] w-[50vh] rounded-full bg-indigo-900/50 blur-[80px] mix-blend-screen opacity-40" />
         
         {/* Subtle Connective Layer */}
         <div className="absolute top-1/2 left-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.05)_0%,transparent_70%)]" />
@@ -40,7 +40,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neutral-950/70 to-neutral-950" />
 
         {/* Grain/Texture Overlay */}
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.10] brightness-100 contrast-150" />
+        <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.10] brightness-100 contrast-150" />
       </motion.div>
 
       {/* Main Content Area */}

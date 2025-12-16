@@ -5,19 +5,29 @@ const SignatureTransition = ({ onComplete }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    let timeoutId;
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setIsMobile(window.innerWidth < 768);
+      }, 150); // Debounce by 150ms
     };
-    checkMobile();
+    
+    // Initial check
+    const isMobileDevice = window.innerWidth < 768;
+    setIsMobile(isMobileDevice);
 
     // If mobile, complete immediately
-    if (window.innerWidth < 768) {
+    if (isMobileDevice) {
       onComplete && onComplete();
     }
 
     window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      clearTimeout(timeoutId);
+    };
+  }, [onComplete]);
 
   // Animation variants for the paths
   const pathVariants = {
