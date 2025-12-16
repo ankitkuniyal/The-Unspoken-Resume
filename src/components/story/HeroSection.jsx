@@ -64,7 +64,7 @@ const HeroSection = () => {
           <h1 className="flex flex-col items-center justify-center space-y-2 font-sans font-bold leading-none tracking-tight text-white">
             <div className="overflow-hidden py-2">
               <motion.span
-                className="block text-4xl md:text-5xl lg:text-[8rem]"
+                className="block text-6xl md:text-7xl lg:text-[8rem]"
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
