@@ -51,7 +51,7 @@ const HeroSection = () => {
           <h1 className="flex flex-col items-center text-center font-display font-black leading-none tracking-tight text-white uppercase">
             <div className="overflow-hidden py-4">
               <motion.span
-                className="block text-4xl sm:text-6xl md:text-9xl lg:text-[9rem] xl:text-[8rem] whitespace-nowrap"
+                className="block text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] xl:text-[6.5rem] whitespace-nowrap"
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -71,7 +71,7 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 1.2 }}
             className="flex flex-col items-center gap-4"
           >
-            <p className="max-w-2xl font-sans text-lg md:text-xl text-neutral-400 font-light tracking-wide">
+            <p className="max-w-2xl font-sans text-lg md:text-2xl text-neutral-400 font-semibold tracking-wide">
               Forged by Errors. Refined by Understanding.
             </p>
             <div className="h-px w-12 bg-blue-500/50" />
