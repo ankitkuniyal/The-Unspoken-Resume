@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const ProjectCard = ({ project, className }) => {
   return (
@@ -75,7 +75,7 @@ const ProjectCard = ({ project, className }) => {
 
       <div className="z-10 mt-auto flex gap-4 border-t border-neutral-800 pt-6">
         <Link
-          to="/projects"
+          href="/projects"
           className="flex items-center gap-2 text-sm text-white transition-colors hover:text-accent"
         >
           View Architecture <ExternalLink size={14} />

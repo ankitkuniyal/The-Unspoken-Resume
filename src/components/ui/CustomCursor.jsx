@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState, memo, useCallback } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
@@ -39,10 +41,9 @@ const CustomCursor = memo(() => {
     };
   }, [cursorX, cursorY]);
 
-  // Hide cursor on touch devices
-  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
-     return null;
-  }
+  // Hide cursor on touch devices via CSS instead of JS to prevent hydration mismatch
+  // The 'md:block' class already handles hiding on small screens, and we can add 'pointer-events-none'
+
 
   return (
     <motion.div

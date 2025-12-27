@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
-const MagneticNavLink = ({ to, children, className }) => {
+const MagneticNavLink = ({ href, children, className }) => {
   const ref = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -28,7 +28,7 @@ const MagneticNavLink = ({ to, children, className }) => {
       animate={{ x, y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
     >
-      <Link to={to} className={className}>
+      <Link href={href} className={className}>
         {children}
       </Link>
     </motion.div>

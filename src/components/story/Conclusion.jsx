@@ -2,7 +2,7 @@ import StorySection from '../ui/StorySection';
 import AnimatedHeading from '../ui/AnimatedHeading';
 import ScrollRevealText from '../ui/ScrollRevealText';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 const Conclusion = () => {
@@ -66,7 +66,7 @@ const Conclusion = () => {
           className="mt-16 flex flex-col items-center justify-center gap-6 sm:flex-row"
         >
           <Link
-            to="/projects"
+            href="/projects"
             className="group relative flex items-center gap-4 overflow-hidden rounded-full bg-white px-8 py-4 text-base font-bold text-black transition-all hover:scale-105 hover:bg-neutral-200"
           >
             <span className="relative z-10">See My Work</span>
@@ -75,7 +75,7 @@ const Conclusion = () => {
           </Link>
           
           <Link
-            to="/contact"
+            href="/contact"
             className="group flex items-center gap-2 px-8 py-4 text-sm font-medium uppercase tracking-widest text-neutral-500 transition-colors hover:text-white"
           >
             Get in Touch

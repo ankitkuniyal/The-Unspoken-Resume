@@ -13,7 +13,7 @@ const Chapter1 = () => {
              <motion.span 
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 0.2 }}
+               transition={{ duration: 0.8, delay: 0 }}
                className="mb-6 block font-mono text-sm tracking-[0.2em] text-accent uppercase opacity-70"
              >
               Chapter 01
@@ -27,7 +27,6 @@ const Chapter1 = () => {
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0 }} // Strong delay for "segregation" effect
             className="space-y-8 text-lg font-light leading-relaxed text-neutral-300 md:text-2xl"
           >
             <ScrollRevealText>
@@ -58,7 +57,7 @@ const Chapter1 = () => {
           <motion.div 
             initial={{ opacity: 0, rotateX: 20, z: -100 }}
             whileInView={{ opacity: 1, rotateX: 0, z: 0 }}
-            transition={{ duration: 1.5, delay: 1.5, ease: "easeOut" }} // Sync delay with text
+            transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }} // Sync delay with text
             className="relative w-full max-w-md overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-8 shadow-2xl backdrop-blur-2xl"
           >
             {/* Window Controls */}
@@ -73,21 +72,21 @@ const Chapter1 = () => {
               className="space-y-3 font-mono text-sm text-neutral-400"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              transition={{ staggerChildren: 0.2, delayChildren: 1.8 }} // Further delay for internal items
+              transition={{ staggerChildren: 0.1 }} // Further delay for internal items
             >
-              <motion.p initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 1.8 }}>
+              <motion.p initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 0.8 }}>
                 <span className="text-purple-400 opacity-50">while</span>(true) {'{'}
               </motion.p>
-              <motion.p initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 2.0 }} className="pl-6 text-white/80">
+              <motion.p initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 1.0 }} className="pl-6 text-white/80">
                 learn(syntax);
               </motion.p>
-              <motion.p initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 2.2 }} className="pl-6 text-white/80">
+              <motion.p initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 1.2 }} className="pl-6 text-white/80">
                 confusion++;
               </motion.p>
-               <motion.p initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 2.4 }} className="pl-6">
+               <motion.p initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 1.4 }} className="pl-6">
                 <span className="text-red-400/80">// Where is the value?</span>
               </motion.p>
-              <motion.p initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 2.6 }}>
+              <motion.p initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 1.6 }}>
                 {'}'}
               </motion.p>
             </motion.div>

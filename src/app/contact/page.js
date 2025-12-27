@@ -1,9 +1,10 @@
-import { motion } from 'framer-motion';
-import { ArrowLeft, Mail, Github, Linkedin, MessageSquare, Instagram } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import NavBar from '../components/ui/NavBar';
+"use client";
 
-const ContactPage = () => {
+import { motion } from "framer-motion";
+import { Mail, Github, Linkedin, MessageSquare, Instagram } from "lucide-react";
+import NavBar from "../../components/ui/NavBar";
+
+export default function ContactPage() {
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background p-6 text-white md:p-20">
       <div className="absolute inset-0 z-0">
@@ -21,16 +22,18 @@ const ContactPage = () => {
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          transition={{ type: 'spring', duration: 0.6 }}
+          transition={{ type: "spring", duration: 0.6 }}
           className="mx-auto mb-8 flex h-20 w-20 rotate-3 items-center justify-center rounded-2xl border border-neutral-700 bg-neutral-800/50 backdrop-blur-md transition-transform hover:rotate-6"
         >
           <MessageSquare size={40} className="text-white" />
         </motion.div>
 
-        <h1 className="mb-6 text-4xl font-bold md:text-5xl">Let's build something sensible.</h1>
+        <h1 className="mb-6 text-4xl font-bold md:text-5xl">
+          Let's build something sensible.
+        </h1>
         <p className="mb-12 text-lg leading-relaxed text-neutral-400">
-          I'm currently looking for roles where I can build backend systems that matter. No fluff,
-          just good engineering.
+          I'm currently looking for roles where I can build backend systems that
+          matter. No fluff, just good engineering.
         </p>
 
         <div className="mx-auto flex w-full max-w-sm flex-col gap-4">
@@ -55,7 +58,9 @@ const ContactPage = () => {
             <span className="flex items-center gap-3 text-neutral-300 group-hover:text-white">
               <Github size={20} /> Check the code
             </span>
-            <span className="text-sm text-neutral-500 group-hover:text-white">GitHub</span>
+            <span className="text-sm text-neutral-500 group-hover:text-white">
+              GitHub
+            </span>
           </a>
 
           <a
@@ -67,7 +72,9 @@ const ContactPage = () => {
             <span className="flex items-center gap-3 text-neutral-300 group-hover:text-white">
               <Linkedin size={20} /> Connect
             </span>
-            <span className="text-sm text-neutral-500 group-hover:text-blue-400">LinkedIn</span>
+            <span className="text-sm text-neutral-500 group-hover:text-blue-400">
+              LinkedIn
+            </span>
           </a>
           <a
             href="https://instagram.com/ankit.kuniyal_"
@@ -78,12 +85,12 @@ const ContactPage = () => {
             <span className="flex items-center gap-3 text-neutral-300 group-hover:text-white">
               <Instagram size={20} /> More of Me
             </span>
-            <span className="text-sm text-neutral-500 group-hover:text-blue-400">Instagram</span>
+            <span className="text-sm text-neutral-500 group-hover:text-blue-400">
+              Instagram
+            </span>
           </a>
         </div>
       </motion.div>
     </div>
   );
-};
-
-export default ContactPage;
+}

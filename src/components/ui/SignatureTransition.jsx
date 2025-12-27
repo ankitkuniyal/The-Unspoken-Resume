@@ -31,13 +31,15 @@ const SignatureTransition = ({ onComplete }) => {
 
   // Animation variants for the paths
   const pathVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
+    hidden: { pathLength: 0, opacity: 0, fillOpacity: 0 },
     visible: {
       pathLength: 1,
       opacity: 1,
+      fillOpacity: 1,
       transition: {
-        duration: 1.5,
-        ease: [0.37, 0, 0.63, 1], // Smooth easeInOut
+        pathLength: { duration: 3, ease: [0.37, 0, 0.63, 1] },
+        opacity: { duration: 0.5 },
+        fillOpacity: { delay: 3.0, duration: 1.0 },
       },
     },
   };
@@ -60,105 +62,86 @@ const SignatureTransition = ({ onComplete }) => {
     >
       {/* Background Ambience */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03),transparent_70%)]" />
-    <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0">
         <div className="absolute right-[-10%] top-[-10%] h-[50%] w-[50%] rounded-full bg-accent/10 blur-[120px]" />
         <div className="absolute bottom-[-10%] left-[-10%] h-[50%] w-[50%] rounded-full bg-purple-500/10 blur-[100px]" />
       </div>
 
-      <div className="relative flex w-full max-w-5xl flex-col items-center justify-center px-10">
+      <div className="relative flex w-full max-w-7xl flex-col items-center justify-center px-4">
         <svg
-          viewBox="0 0 550 300"
-          className="h-auto w-full fill-none stroke-current text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-          style={{ strokeWidth: 1.2, strokeLinecap: 'round', strokeLinejoin: 'round' }}
+          viewBox="0 0 1368 422"
+          className="h-auto w-full stroke-current text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+          style={{ strokeWidth: 10, strokeLinecap: 'round', strokeLinejoin: 'round' }}
         >
-          {/* "Ankit" Group */}
-          <motion.g initial="hidden" animate="visible" transition={{ staggerChildren: 0.12 }}>
-            {/* A */}
-            <motion.path
-              variants={pathVariants}
-              d="M 60 140 C 60 140 100 60 110 50 C 120 40 130 140 130 140"
-            />
-            <motion.path
-              variants={pathVariants}
-              d="M 70 110 C 80 100 120 100 130 110 C 140 120 140 110 140 110"
-            />
-
-            {/* n */}
-            <motion.path
-              variants={pathVariants}
-              d="M 140 110 L 140 140 M 140 125 C 150 110 160 110 160 125 L 160 140"
-            />
-
-            {/* k */}
-            <motion.path
-              variants={pathVariants}
-              d="M 170 140 L 170 40 L 170 140 M 170 120 C 180 110 190 120 180 130 C 175 135 185 140 190 140"
-            />
-
-            {/* i */}
-            <motion.path variants={pathVariants} d="M 200 110 L 200 140" />
-
-            {/* t */}
-            <motion.path variants={pathVariants} d="M 210 140 L 210 60" />
-            <motion.path variants={pathVariants} d="M 200 80 L 220 80" />
-
-            {/* i dot */}
-            <motion.path variants={pathVariants} d="M 200 95 L 201 95" />
-          </motion.g>
-
-          {/* "Kuniyal" Group - Starts after delay */}
+          <defs>
+            <linearGradient id="signatureGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="50%" stopColor="#d4d4d4" />
+              <stop offset="100%" stopColor="#a3a3a3" />
+            </linearGradient>
+          </defs>
           <motion.g
+            transform="translate(0,422) scale(0.1,-0.1)"
             initial="hidden"
             animate="visible"
-            transition={{ delayChildren: 1.8, staggerChildren: 0.12 }}
+            transition={{ staggerChildren: 0.5 }}
             onAnimationComplete={() => {
               // Start exit sequence after a brief pause
               setTimeout(() => {
                 sessionStorage.setItem('introShown', 'true');
                 onComplete && onComplete();
-              }, 800);
+              }, 1500);
             }}
           >
-            {/* K */}
+            {/* Path 4: M2585... (Leftmost) */}
             <motion.path
               variants={pathVariants}
-              d="M 260 140 L 260 50 M 260 100 C 280 60 290 60 300 70 M 250 90 C 290 130 300 170 310 140"
+              fill="url(#signatureGradient)"
+              stroke="url(#signatureGradient)"
+              d="M2585 2646 c-99 -46 -248 -210 -410 -449 l-79 -118 -46 5 c-123 15 -201 17 -265 6 -86 -14 -155 -43 -155 -65 0 -9 3 -15 8 -13 4 2 34 17 67 33 58 29 65 30 190 30 72 0 142 -4 157 -8 l27 -7 -135 -206 c-74 -113 -162 -243 -196 -288 -85 -112 -232 -257 -300 -295 -63 -36 -90 -61 -65 -61 29 0 164 99 246 181 136 135 370 438 480 622 16 26 28 36 40 33 9 -3 79 -17 155 -31 77 -14 141 -27 144 -29 13 -14 -3 -405 -24 -578 -6 -48 -4 -58 9 -58 32 0 61 181 73 471 l7 156 75 -1 c56 -1 76 3 80 13 4 11 -5 13 -46 7 -28 -4 -63 -4 -78 0 l-26 7 6 91 c17 219 48 351 115 485 48 93 35 109 -54 67z m14 -70 c-77 -142 -139 -367 -139 -500 0 -29 -2 -55 -5 -58 -5 -5 -295 49 -303 57 -8 7 164 259 249 366 90 111 196 207 231 209 4 0 -11 -33 -33 -74z"
             />
-
-            {/* u */}
+            
+            {/* Path 1: M5046... (Middle-Left) */}
             <motion.path
               variants={pathVariants}
-              d="M 320 110 L 320 135 C 320 145 330 145 330 135 L 330 110"
+              fill="url(#signatureGradient)"
+              stroke="url(#signatureGradient)"
+              d="M5046 2768 c-14 -24 -46 -93 -72 -155 l-46 -111 -172 -4 c-131 -3 -180 -8 -208 -20 -54 -24 -47 -39 10 -21 34 12 87 16 195 15 82 0 151 -2 154 -5 3 -3 -25 -94 -62 -202 -36 -108 -77 -244 -90 -302 -13 -58 -25 -106 -27 -108 -2 -1 -30 -18 -63 -37 -157 -93 -256 -128 -364 -128 -106 0 -149 40 -136 127 3 24 2 44 -4 48 -6 3 -71 -17 -145 -44 -246 -93 -468 -137 -510 -102 -21 18 -20 24 9 59 14 17 25 42 25 56 0 22 -4 26 -30 26 -46 0 -85 -25 -130 -81 l-40 -51 0 54 c0 62 6 71 75 120 61 44 170 156 214 221 83 121 136 297 110 364 -25 66 -86 104 -164 104 -71 0 -125 -28 -166 -87 -70 -103 -97 -222 -106 -477 l-6 -177 -61 -34 c-111 -62 -187 -89 -251 -90 l-60 -1 -6 44 c-5 42 -28 71 -55 71 -6 0 -23 -9 -37 -20 -33 -26 -35 -25 -39 8 -2 16 -9 27 -18 27 -11 0 -15 -12 -15 -45 0 -38 3 -45 20 -48 12 -2 32 9 50 28 16 16 32 30 37 30 4 0 7 -20 6 -45 -3 -58 16 -78 74 -78 53 1 182 43 282 92 86 42 86 42 86 -56 0 -28 5 -55 12 -59 12 -8 18 -1 83 92 47 67 80 93 97 76 9 -9 4 -20 -20 -45 -22 -23 -32 -43 -32 -64 0 -27 5 -33 36 -43 22 -8 58 -10 93 -6 84 10 291 59 417 100 61 20 114 36 117 36 4 0 7 -13 7 -30 0 -103 111 -144 291 -106 63 14 188 70 271 122 21 13 40 24 42 24 2 0 2 -42 -1 -92 -4 -63 0 -119 10 -174 28 -147 79 -224 184 -276 125 -61 299 -50 527 34 221 82 504 239 731 405 123 90 145 108 145 123 0 19 -20 8 -138 -75 -399 -283 -772 -467 -1002 -494 -208 -25 -334 40 -387 199 -14 43 -18 85 -17 200 0 200 32 343 145 655 l44 120 45 -1 c323 -11 565 -1 638 27 51 20 6 27 -73 12 -88 -16 -386 -22 -516 -9 l-76 7 45 126 c24 69 50 136 59 149 14 22 11 44 -7 44 -5 0 -20 -19 -34 -42z m-1389 -218 c58 -26 78 -68 69 -143 -8 -60 -64 -187 -118 -265 -38 -55 -166 -191 -222 -235 l-39 -31 6 169 c4 94 13 204 21 245 25 133 75 237 129 267 33 18 106 15 154 -7z"
             />
-
-            {/* n */}
+            
+            {/* Path 3: M7205... (Middle-Right) */}
             <motion.path
               variants={pathVariants}
-              d="M 340 110 L 340 140 M 340 125 C 350 110 360 110 360 125 L 360 140"
+              fill="url(#signatureGradient)"
+              stroke="url(#signatureGradient)"
+              d="M7205 2689 c-108 -43 -216 -142 -188 -170 7 -7 24 6 52 38 88 99 197 156 236 123 38 -31 -1 -224 -123 -613 -54 -174 -61 -189 -90 -207 -35 -22 -42 -53 -15 -69 16 -8 16 -14 5 -53 -114 -408 -129 -488 -92 -488 11 0 34 71 60 185 25 109 89 327 98 337 10 9 172 -57 244 -99 32 -19 88 -57 124 -84 36 -27 69 -49 75 -49 21 0 7 31 -28 60 -37 31 -302 166 -376 191 -25 9 -36 18 -32 27 3 7 5 17 5 22 0 4 55 52 123 106 67 54 183 148 257 209 74 61 182 146 240 190 108 81 126 98 110 103 -17 6 -48 -17 -347 -256 -164 -131 -315 -250 -335 -266 l-37 -28 44 133 c114 338 156 553 124 636 -18 49 -52 55 -134 22z"
             />
+            
+             {/* Path 2: M11695... (Rightmost) */}
+             <motion.path
+               variants={pathVariants}
+               fill="url(#signatureGradient)"
+              stroke="url(#signatureGradient)"
+               d="M11695 2731 c-50 -13 -90 -38 -138 -86 -115 -115 -221 -381 -248 -625 -20 -173 -12 -159 -114 -197 -105 -37 -185 -44 -185 -15 0 31 -11 32 -56 6 -48 -29 -87 -29 -92 0 -5 26 16 36 63 29 36 -6 39 -5 27 10 -20 24 -67 31 -99 14 -15 -9 -109 -41 -208 -72 -224 -71 -450 -159 -610 -240 l-123 -62 5 147 c7 172 2 190 -55 190 -40 0 -66 -14 -162 -84 -45 -33 -72 -46 -96 -46 -43 0 -54 21 -54 98 0 40 -4 62 -13 65 -7 3 -42 -13 -77 -35 -172 -104 -281 -142 -395 -136 -61 3 -78 7 -99 27 -23 21 -26 33 -26 88 0 36 -4 63 -10 63 -6 0 -27 -11 -48 -24 -118 -74 -263 -130 -324 -124 -30 3 -33 6 -40 48 -12 69 -52 89 -102 49 l-26 -20 0 26 c0 14 -6 28 -14 31 -8 3 -63 -15 -123 -41 -144 -62 -232 -85 -321 -85 -79 0 -81 2 -96 73 -9 37 -25 34 -71 -13 -63 -64 -88 -51 -74 40 6 34 -24 38 -39 5 -42 -92 28 -149 108 -90 34 25 35 25 44 6 10 -24 55 -41 107 -41 78 0 308 57 422 105 14 6 17 2 17 -24 0 -41 26 -41 65 -1 36 38 51 34 47 -11 -5 -53 23 -82 77 -81 51 1 181 43 275 88 37 19 70 34 72 34 2 0 4 -9 4 -20 0 -45 28 -89 71 -111 39 -19 54 -21 134 -16 119 8 218 43 363 132 l42 26 0 -46 c0 -133 89 -146 236 -35 29 22 69 48 89 57 44 21 55 10 55 -52 0 -42 -36 -305 -42 -308 -65 -38 -169 -118 -224 -172 -115 -114 -168 -254 -145 -381 19 -103 56 -144 129 -144 155 0 252 209 297 638 8 76 -3 67 240 187 187 93 329 149 498 196 62 17 130 36 153 43 39 13 40 13 57 -15 14 -25 22 -29 57 -29 23 0 50 5 61 11 15 8 24 7 35 -2 29 -24 157 -3 289 48 8 3 14 -15 17 -55 6 -65 33 -125 71 -161 61 -56 190 -33 396 70 130 66 279 164 267 176 -3 3 -52 -24 -109 -60 -269 -170 -458 -227 -536 -161 -36 30 -51 77 -51 159 l1 60 77 37 c137 67 279 204 360 347 103 184 130 403 57 471 -26 25 -90 34 -140 21z m139 -44 c18 -24 21 -42 20 -110 -4 -245 -217 -545 -483 -681 l-34 -18 7 49 c42 293 148 586 254 704 59 66 104 89 166 86 41 -2 53 -7 70 -30z m-2009 -1373 c-42 -248 -86 -394 -143 -469 -87 -116 -172 -70 -172 93 0 160 67 275 234 404 49 38 90 67 92 65 2 -2 -3 -44 -11 -93z"
+             />
 
-            {/* i */}
-            <motion.path variants={pathVariants} d="M 370 110 L 370 140" />
-            <motion.path variants={pathVariants} d="M 370 95 L 371 95" />
-
-            {/* y */}
-            <motion.path
-              variants={pathVariants}
-              d="M 380 110 L 380 135 C 380 145 390 145 390 135 L 390 110 M 390 135 L 390 160 C 390 180 370 180 365 170"
-            />
-
-            {/* a */}
-            <motion.path
-              variants={pathVariants}
-              d="M 420 120 C 400 125 400 140 410 140 C 420 140 420 120 420 120 L 420 140"
-            />
-
-            {/* l */}
-            <motion.path variants={pathVariants} d="M 430 130 C 430 140 440 50 430 60 L 430 140" />
+             <motion.path
+               variants={pathVariants}
+               fill="url(#signatureGradient)"
+              stroke="url(#signatureGradient)"
+               d="M8922 1958 c2 -15 11 -24 26 -26 18 -3 22 1 22 22 0 21 -5 26 -26 26 -21 0 -25 -4 -22 -22z"
+             />
+             <motion.path
+               variants={pathVariants}
+               fill="url(#signatureGradient)"
+              stroke="url(#signatureGradient)"
+               d="M4145 1970 c-8 -13 13 -40 31 -40 17 0 25 15 18 34 -7 18 -39 22 -49 6z"
+             />
           </motion.g>
         </svg>
       </div>
     </motion.div>
   );
+
 };
 export default SignatureTransition;

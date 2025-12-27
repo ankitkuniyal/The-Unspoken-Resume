@@ -1,4 +1,5 @@
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,16 +7,16 @@ import MagneticNavLink from './MagneticNavLink';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   const navItems = [
-    { to: '/', label: 'Home' },
-    { to: '/projects', label: 'Projects' },
-    { to: '/resume', label: 'Resume' },
-    { to: '/contact', label: 'Contact' },
+    { href: '/', label: 'Home' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/resume', label: 'Resume' },
+    { href: '/contact', label: 'Contact' },
   ];
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => pathname === path;
 
   return (
     <>
@@ -35,10 +36,10 @@ const NavBar = () => {
           <div className="hidden gap-8 md:flex">
             {navItems.map((item) => (
               <MagneticNavLink
-                key={item.to}
-                to={item.to}
+                key={item.href}
+                href={item.href}
                 className={
-                  isActive(item.to)
+                  isActive(item.href)
                     ? 'block bg-gradient-to-r from-white to-neutral-400 bg-clip-text px-4 py-2 text-sm font-bold text-transparent'
                     : 'block px-4 py-2 text-sm font-medium text-neutral-500 transition-colors hover:text-white'
                 }
@@ -81,16 +82,16 @@ const NavBar = () => {
             >
               {navItems.map((item, index) => (
                 <motion.div
-                  key={item.to}
+                  key={item.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + index * 0.1 }}
                 >
                   <Link
-                    to={item.to}
+                    href={item.href}
                     onClick={() => setIsOpen(false)}
                     className={
-                      isActive(item.to)
+                      isActive(item.href)
                         ? 'bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-2xl font-bold text-transparent'
                         : 'text-2xl text-neutral-500 transition hover:text-white'
                     }

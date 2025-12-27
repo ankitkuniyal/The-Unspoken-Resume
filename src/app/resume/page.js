@@ -1,17 +1,17 @@
-import { motion } from 'framer-motion';
+"use client";
+
+import { motion } from "framer-motion";
 import {
-  ArrowLeft,
   Download,
   FileText,
   ExternalLink,
-  ChevronRight,
   Hash,
   Terminal,
-} from 'lucide-react';
-import NavBar from '../components/ui/NavBar';
-import AnimatedHeading from '../components/ui/AnimatedHeading';
+} from "lucide-react";
+import NavBar from "../../components/ui/NavBar";
+import AnimatedHeading from "../../components/ui/AnimatedHeading";
 
-const ResumePage = () => {
+export default function ResumePage() {
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden bg-[#050505] text-white selection:bg-white/20">
       <NavBar />
@@ -87,7 +87,7 @@ const ResumePage = () => {
           <motion.div
             initial={{ opacity: 0, rotateY: 10, x: 50 }}
             animate={{ opacity: 1, rotateY: 0, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="perspective-1000 group relative"
           >
             {/* Decorative Backdrop */}
@@ -102,7 +102,9 @@ const ResumePage = () => {
                     <FileText className="text-white" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white">resume_final_v2.pdf</h3>
+                    <h3 className="text-lg font-bold text-white">
+                      resume_final_v2.pdf
+                    </h3>
                     <p className="font-mono text-xs uppercase tracking-wider text-neutral-500">
                       74 KB • PDF Document
                     </p>
@@ -113,22 +115,22 @@ const ResumePage = () => {
               {/* Content Preview (Code style) */}
               <div className="space-y-6 font-mono text-sm leading-relaxed">
                 <div className="opacity-50">
-                  <span className="text-purple-400">class</span>{' '}
-                  <span className="text-yellow-200">Engineer</span>{' '}
-                  <span className="text-white">{'{'}</span>
+                  <span className="text-purple-400">class</span>{" "}
+                  <span className="text-yellow-200">Engineer</span>{" "}
+                  <span className="text-white">{"{"}</span>
                 </div>
                 <div className="space-y-2 pl-6">
                   <div className="flex gap-4">
                     <span className="text-neutral-600">01</span>
                     <span>
-                      <span className="text-blue-400">name</span>:{' '}
+                      <span className="text-blue-400">name</span>:{" "}
                       <span className="text-green-400">"Ankit Kuniyal"</span>;
                     </span>
                   </div>
                   <div className="flex gap-4">
                     <span className="text-neutral-600">02</span>
                     <span>
-                      <span className="text-blue-400">status</span>:{' '}
+                      <span className="text-blue-400">status</span>:{" "}
                       <span className="text-green-400">"Building cool stuff"</span>;
                     </span>
                   </div>
@@ -136,8 +138,8 @@ const ResumePage = () => {
                     <span className="text-neutral-600">03</span>
                     <span>
                       <span className="text-blue-400">stack</span>: [
-                      <span className="text-orange-300">"React"</span>,{' '}
-                      <span className="text-orange-300">"Node"</span>,{' '}
+                      <span className="text-orange-300">"React"</span>,{" "}
+                      <span className="text-orange-300">"Node"</span>,{" "}
                       <span className="text-orange-300">"Python"</span>,
                       <span className="text-orange-300">"Java"</span>];
                     </span>
@@ -145,13 +147,13 @@ const ResumePage = () => {
                   <div className="flex gap-4">
                     <span className="text-neutral-600">04</span>
                     <span>
-                      <span className="text-blue-400">location</span>:{' '}
+                      <span className="text-blue-400">location</span>:{" "}
                       <span className="text-green-400">"Global / Remote"</span>;
                     </span>
                   </div>
                 </div>
                 <div className="opacity-50">
-                  <span className="text-white">{'}'}</span>
+                  <span className="text-white">{"}"}</span>
                 </div>
               </div>
 
@@ -163,6 +165,4 @@ const ResumePage = () => {
       </main>
     </div>
   );
-};
-
-export default ResumePage;
+}

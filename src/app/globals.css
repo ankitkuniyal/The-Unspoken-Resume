@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0a0a0a;
+  --color-accent: #3b82f6;
+  --color-secondary: #e5e5e5;
+  --color-muted: #525252;
+
+  --font-sans: var(--font-sans), Inter, sans-serif;
+  --font-display: var(--font-display), "Space Grotesk", sans-serif;
+  --font-mono: "Fira Code", monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply overflow-x-hidden bg-background font-sans text-white antialiased;
+  }
+}
+
